@@ -18,7 +18,9 @@ RUN wget -O install.sh http://download.bt.cn/install/install.sh \
 
  && printf "y\n0"|bash ./install.sh
 
-ADD ./start.sh /start.sh
+ENV APP_HOME /www/server/panel
+WORKDIR $APP_HOME
+RUN python tools.pyc panel mkaliez.com && service bt start
 
 EXPOSE 21 22 80 443 888 3306 8888
 
